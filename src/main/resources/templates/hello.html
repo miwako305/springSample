@@ -5,7 +5,8 @@
     <title>hello! world</title>
 </head>
 <body>
-<h1>Hello world!! </h1>
+<h1>Hello world!! <p th:text="${name}"></p></h1>
+
 <form method="post" action="/hello">
 好きなパンを入力：
 <!-- ポイント：th:vslue -->
@@ -15,6 +16,12 @@ th:とつく属性はタイムリーフの属性です。inputタグにタイム
 <input type="text" name="text1" th:value="${text1_value}"/>
 <input type="submit" value="クリック"/>
 </form>
-<p th:inline="text">[[${name}]]は<a th:style="${style}">[[${sample}]]が好き</a> </p>
+<br/>
+<form method="post" action="/hello/db">
+    従業員IDを入力
+    <input type="text" name="text2" th:value="${text2_value}"/>
+    <input type="submit" value="クリック"/>
+</form>
+<p th:inline="text" th:style="${style}">[[${name}]]は<a style="color:red">[[${sample}]]が好き</a> </p>
 </body>
 </html>

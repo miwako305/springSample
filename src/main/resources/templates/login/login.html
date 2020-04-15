@@ -4,9 +4,14 @@
     <meta charset="UTF-8"></meta>
 
     <!-- Bootstrapの設定 -->
-    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
-    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <!--【6-1-3】ポイント1　Bootstrapの設定　Bootstrupをしようする為にはheadタグ内でjQueryとBootstrupを読み込む必要がありあます。
+    ダウンロードしたjsをsrc/main/resource 配下に置いてあるような形で読みこむ事ができます。
+    cssファイル　th:href="@{resorse/対象ファイルパス}"
+    jsファイル　th:src="@{resorse/対象ファイルパス}"
+    -->
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 
     <title>Login</title>
 </head>
@@ -26,6 +31,8 @@
     </form>
     <br />
     <!-- ユーザー登録画面へのリンク -->
+    <!--【6-1-3】ポイント2　タイムリーフを使ってアンカータグを使う場合『th:href』属性をしようします。
+    使い方は＠GetMappingアノテーションのカッコ内の文字列を指定するだけです。-->
     <a th:href="@{'/signup'}">ユーザー新規登録はこちら</a>
 </body>
 </html>

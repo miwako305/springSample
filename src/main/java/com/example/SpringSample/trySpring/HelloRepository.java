@@ -1,10 +1,11 @@
 package com.example.SpringSample.trySpring;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.Map;
 /*
 * レポジトリークラス
 * DBへのCROUD 操作を行い、その結果を返します。
@@ -22,12 +23,12 @@ public class HelloRepository {
     public Map<String, Object> findOne(int id){
         // SELECT 文
         String query = "SELECT"
-                +"employee_id"
-                +"employee_name"
-                +"age"
-                +"FROM employee"
+                +" employee_id,"
+                +" employee_name,"
+                +" age "
+                +"FROM employee "
                 +"WHERE employee_id=?";
-        Map<String,Object> employee = jdbcTemplate.queryForMap(query,id);
+        var employee = jdbcTemplate.queryForMap(query,id);
         return employee;
     }
 }

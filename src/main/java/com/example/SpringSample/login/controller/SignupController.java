@@ -1,4 +1,4 @@
-package com.example.demo.login.controller;
+package com.example.SpringSample.login.controller;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -8,9 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+/*
+ * コントローラークラス
+ * ユーザー登録用画面
+ *
+ */
 @Controller
 public class SignupController {
 
+    //【6-1-3】ポイント3　タイムリーフを使って値を動的に変更する為にMapを用意
     //ラジオボタン用変数
     private Map<String, String> radioMarriage;
 
@@ -49,7 +55,8 @@ public class SignupController {
      */
     @PostMapping("/signup")
     public String postSignUp(Model model) {
-
+        //【6-1-3】ポイント4 リダイレクトする場合はメソッドの返却値にredirect:<遷移先のパス>を指定する
+        // リダイレクトすると遷移先のcontrollerクラスのメソッドが呼ばれます
         // login.htmlにリダイレクト
         return "redirect:/login";
     }
