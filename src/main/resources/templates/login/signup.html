@@ -4,9 +4,9 @@
     <meta charset="UTF-8"></meta>
 
     <!-- Bootstrapの設定 -->
-    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
     <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
     <title>SignUp</title>
 </head>
@@ -16,15 +16,33 @@
             <h1>ユーザー登録画面</h1>
         </div>
         <!--Spring　-->
-    　　<!--補足　th:actionはセキュリティを使用した書き方をしてます -->
-        <form method="post" th:action="@{/signup}">
+    　　<!--【補足】　th:actionはセキュリティを使用した書き方をしてます -->
+        <!--【6-2-2】ポイント1　th:object  th:objectを使う事でModelに登録されているオブジェクトを受け取る事ができるようになります。
+         ↓コードで言うとSignupFormクラスを受け取っています。使い方は以下のようになります
+         ・th：objectの使い方
+         　th：object＝ "${<ModelAttributeのキー名>}"
+          th:objectを付けたタグの中であれば、th：fildを使用するとオブジェクトの中のフィールドを取得できます。
+          同時にコントローラークラスに値を渡すこともできるようになります。
+         -->
+        <form method="post" th:action="@{/signup}" th:object="${signupForm}">
             <table class="table table-bordered table-hover">
                 <!-- ユーザーIDの入力エリア -->
                 <tr>
                     <th class="active col-sm-3">ユーザID</th>
                     <td>
                         <div class="form-group">
-                            <input type="text" class="form-control" />
+                            <!--【6-2-2】ポイント1　th:fildの追加　
+                             ↓はth:object属性をのタグの中の書き方です。
+                             th:objectが付いたタグの中であれば、オブジェクト名を省略する事が出来ます。
+                             画面から送るフィールドが多い時に有効な使い方です。将来的にフィールドが増える事を踏まえた時に有効です。
+                            -->
+                            <input type="text" class="form-control"  th.field="*{userId}"/>
+                            <!-- <input type="text" th.field="*{signupForm.userId}" />-->
+                             <!--【6-2-2】ポイント1 th:fildの追加
+                             ・th：fildの使い方
+                             th:field="${<ModelAttributeのkey名.field名>}"
+                             ↑はth:object属性を書かなかった時の書き方です。
+                             -->
                         </div>
                     </td>
                 </tr>
@@ -32,8 +50,10 @@
                 <tr>
                     <th class="active">パスワード</th>
                     <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
+                        <div class="form-group"
+                            th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
+                            <input type="text" class="form-control"
+                                th:field="*{password}" />
                         </div>
                     </td>
                 </tr>
@@ -41,8 +61,10 @@
                 <tr>
                     <th class="active">ユーザー名</th>
                     <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
+                        <div class="form-group"
+                            th:classappend="${#fields.hasErrors('userName')} ? 'has-error'">
+                            <input type="text" class="form-control"
+                                th:field="*{userName}" />
                         </div>
                     </td>
                 </tr>
@@ -50,8 +72,10 @@
                 <tr>
                     <th class="active">誕生日</th>
                     <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control" />
+                        <div class="form-group"
+                            th:classappend="${#fields.hasErrors('birthday')} ? 'has-error'">
+                            <input type="text" class="form-control" placeholder="yyyy/MM/dd"
+                                th:field="*{birthday}"/>
                         </div>
                     </td>
                 </tr>
@@ -59,8 +83,10 @@
                 <tr>
                     <th class="active">年齢</th>
                     <td>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="yyyy/MM/dd" />
+                        <div class="form-group"
+                            th:classappend="${#fields.hasErrors('age')} ? 'has-error'">
+                            <input type="text" class="form-control"
+                                th:field="*{age}" />
                         </div>
                     </td>
                 </tr>
@@ -75,19 +101,27 @@
                             itemは変数であり、signupControllerで取得したMapが入っています。
                             　・th:text　画面に表示される文字列を指定します。
                             　・th:value Controllerクラスに送る値を指定します。
-                            -->
+                             -->
 
 
                             <div th:each="item : ${radioMarriage}">
                                 <input type="radio" name="radioMarrige"
                                     th:text="${item.key}"
-                                    th:value="${item.value}">
+                                    th:value="${item.value}"
+                                    th:field="*{marriage}">
                                 </input>
                             </div>
                         </div>
                     </td>
                 </tr>
             </table>
+            <!-- エラーメッセージの一覧表示 -->
+            <ul>
+                <!--【6-2-2】ポイント2 エラーメッセージをまとめて表示するにはラジオボタン同様にth:each属性を使います。-->
+                <li th:each="error : ${#fields.detailedErrors()}">
+                    <span th:text="${error.message}">Error message</span>
+                </li>
+            </ul>
             <!-- ユーザー登録ボタン -->
             <button class="btn btn-primary" type="submit">ユーザー登録</button>
         </form>

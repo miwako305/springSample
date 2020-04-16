@@ -3,9 +3,12 @@ package com.example.SpringSample.login.controller;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.example.SpringSample.login.domain.model.SignupForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /*
@@ -37,8 +40,15 @@ public class SignupController {
     /**
      * ユーザー登録画面のGETメソッド用処理.
      */
+
+    /** 【6-2-2】ポイント1　@ModelAttribute 引数のフォームクラスに　＠ModelAttributeアノテーションを付けると自動的に
+    　Modelクラスに登録してくれます。
+    　引数に書かないのであれば、　model.add.Atribute("SignupForm",form);
+    　@ModelAttributeを付けた場合、デフォルトではクラス名の頭文字を小文字に変えた文字列がキー名に登録されます。
+    　↓ソースでは　signupFormの形で登録されています。
+    　もしキー名を変えたいのであれば　＠ModelAtribute（"キー名"）とパラメーターを指定します。*/
     @GetMapping("/signup")
-    public String getSignUp(Model model) {
+    public String getSignUp(@ModelAttribute SignupForm form, Model model) {
 
         // ラジオボタンの初期化メソッド呼び出し
         radioMarriage = initRadioMarrige();
@@ -54,9 +64,33 @@ public class SignupController {
      * ユーザー登録画面のPOSTメソッド用処理.
      */
     @PostMapping("/signup")
-    public String postSignUp(Model model) {
-        //【6-1-3】ポイント4 リダイレクトする場合はメソッドの返却値にredirect:<遷移先のパス>を指定する
-        // リダイレクトすると遷移先のcontrollerクラスのメソッドが呼ばれます
+
+    /*　
+    【6-2-2】ポイント BindingResult データバインドの結果の受け取り。
+     データバインドの結果を受け取るには、メソッドの引数にBindengResultクラスを追加します。
+    　このクラスのhasErrors()メソッドでデータバインドに失敗しているかどうかがわかります。
+     バリデーションエラーに対してもhasErrors()メソッドで失敗しているかどうかが判ります　
+     */
+    public String postSignUp(@ModelAttribute SignupForm form, BindingResult bindingResult, Model model) {
+
+
+        /*【6-2-2】 ポイント3　データバインド失敗の場合 データバインドに失敗した場合、
+        BindResultのhasErrors()メソッドでfalseが返却されます。↓ソースでは失敗した場合ユーザー
+        登録画面に戻ります。その際にはgetSignUpメソッドを呼び出しています。
+        理由としてラジオボタンの初期化を行ってくれる為です。
+        */
+
+        // 入力チェックに引っかかった場合、ユーザー登録画面に戻る。
+        if(bindingResult.hasErrors()){
+            //Getリクエスト用のメソッドを呼び出してユーザー登録用画面に戻ります
+            return getSignUp(form,model);
+        }
+
+        // formの中身をコンソールに出して確認します。
+        System.out.println(form);
+
+        /*【6-1-3】ポイント4 リダイレクトする場合はメソッドの返却値にredirect:<遷移先のパス>を指定する
+          リダイレクトすると遷移先のcontrollerクラスのメソッドが呼ばれます　*/
         // login.htmlにリダイレクト
         return "redirect:/login";
     }
