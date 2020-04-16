@@ -1,15 +1,16 @@
 package com.example.SpringSample.login.controller;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import com.example.SpringSample.login.domain.model.SignupForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /*
  * コントローラークラス
@@ -69,9 +70,12 @@ public class SignupController {
     【6-2-2】ポイント BindingResult データバインドの結果の受け取り。
      データバインドの結果を受け取るには、メソッドの引数にBindengResultクラスを追加します。
     　このクラスのhasErrors()メソッドでデータバインドに失敗しているかどうかがわかります。
-     バリデーションエラーに対してもhasErrors()メソッドで失敗しているかどうかが判ります　
+     バリデーションエラーに対してもhasErrors()メソッドで失敗しているかどうかが判ります　*/
+     /*【6-3-1】 ポイント1　バリデーションの実施　バリデーションを実施するには引数のフォームクラスに@Valitatedを付けます。
+     *バリデーションの結果はBindingResultクラスに入っています。その為、バリデーションクラスを使う場合でも引数に設定する必要があります。
      */
-    public String postSignUp(@ModelAttribute SignupForm form, BindingResult bindingResult, Model model) {
+
+    public String postSignUp(@ModelAttribute @Validated SignupForm form, BindingResult bindingResult, Model model) {
 
 
         /*【6-2-2】 ポイント3　データバインド失敗の場合 データバインドに失敗した場合、
