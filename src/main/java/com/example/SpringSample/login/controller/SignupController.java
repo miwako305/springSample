@@ -32,10 +32,10 @@ public class SignupController {
         Map<String, String> radio = new LinkedHashMap<>();
 
         // 既婚、未婚をMapに格納
-        radio.put("既婚", "true");
-        radio.put("未婚", "false");
-
-        return radio;
+        return Map.ofEntries(
+                Map.entry("既婚", "true"),
+                Map.entry("未婚", "false")
+        );
     }
 
     /**
