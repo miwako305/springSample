@@ -1,5 +1,6 @@
 package com.example.SpringSample.login.controller;
 
+import com.example.SpringSample.login.domain.model.GroupOrder;
 import com.example.SpringSample.login.domain.model.SignupForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,7 +76,7 @@ public class SignupController {
      *バリデーションの結果はBindingResultクラスに入っています。その為、バリデーションクラスを使う場合でも引数に設定する必要があります。
      */
 
-    public String postSignUp(@ModelAttribute @Validated SignupForm form, BindingResult bindingResult, Model model) {
+    public String postSignUp(@ModelAttribute @Validated(GroupOrder.class) SignupForm form, BindingResult bindingResult, Model model) {
 
 
         /*【6-2-2】 ポイント3　データバインド失敗の場合 データバインドに失敗した場合、

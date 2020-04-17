@@ -30,19 +30,29 @@
                 <tr>
                     <th class="active col-sm-3">ユーザID</th>
                     <td>
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('userId')}?'has-error'">
                             <!--【6-2-2】ポイント1　th:fildの追加　
                              ↓はth:object属性をのタグの中の書き方です。
                              th:objectが付いたタグの中であれば、オブジェクト名を省略する事が出来ます。
                              画面から送るフィールドが多い時に有効な使い方です。将来的にフィールドが増える事を踏まえた時に有効です。
                             -->
-                            <input type="text" class="form-control"  th.field="*{userId}"/>
+                            <input type="text" class="form-control" th:field="*{userId}"/>
                             <!-- <input type="text" th.field="*{signupForm.userId}" />-->
                              <!--【6-2-2】ポイント1 th:fildの追加
                              ・th：fildの使い方
                              th:field="${<ModelAttributeのkey名.field名>}"
                              ↑はth:object属性を書かなかった時の書き方です。
                              -->
+                            <!--【6-3-3】個別エラーメッセージの表示
+                            th:if="${#fields.hasErrors('<フィールド名>')}"
+                            th:ifがtrueの時にタグが表示される
+                            th:errors="*{'<フィールド名>'}" :エラーメッセージが表示されます
+                            -->
+                            <span class="text-danger"
+                            th:if="${#fields.hasErrors('userId')}"
+                            th:errors="*{userId}">
+                                userId error
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -54,6 +64,11 @@
                             th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
                             <input type="text" class="form-control"
                                 th:field="*{password}" />
+                            <span class="text-danger"
+                                th:if="${#fields.hasErrors('password')}"
+                                th:errors="*{password}">
+                                password error
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -65,6 +80,11 @@
                             th:classappend="${#fields.hasErrors('userName')} ? 'has-error'">
                             <input type="text" class="form-control"
                                 th:field="*{userName}" />
+                            <span class="text-danger"
+                                th:if="${#fields.hasErrors('userName')}"
+                                th:errors="*{userName}">
+                                userName error
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -76,6 +96,11 @@
                             th:classappend="${#fields.hasErrors('birthday')} ? 'has-error'">
                             <input type="text" class="form-control" placeholder="yyyy/MM/dd"
                                 th:field="*{birthday}"/>
+                            <span class="text-danger"
+                                th:if="${#fields.hasErrors('birthday')}"
+                                th:errors="*{birthday}">
+                                birthday error
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -87,6 +112,11 @@
                             th:classappend="${#fields.hasErrors('age')} ? 'has-error'">
                             <input type="text" class="form-control"
                                 th:field="*{age}" />
+                            <span class="text-danger"
+                                th:if="${#fields.hasErrors('age')}"
+                                th:errors="*{age}">
+                                age error
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -111,6 +141,11 @@
                                     th:field="*{marriage}">
                                 </input>
                             </div>
+                            <span class="text-danger"
+                                th:if="${#fields.hasErrors('marriage')}"
+                                th:errors="*{marriage}">
+                                marriage error
+                            </span>
                         </div>
                     </td>
                 </tr>
