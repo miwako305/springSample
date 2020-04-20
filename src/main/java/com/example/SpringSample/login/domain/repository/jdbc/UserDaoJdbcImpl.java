@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+@Repository("UserDaoJdbcImpl")
 public class UserDaoJdbcImpl implements UserDao {
 
     @Autowired
@@ -148,5 +148,14 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public void userCsvOut() throws DataAccessException {
 
+        // M_USERテーブルのデータを全件取得するSQL
+        String sql = "SELECT * FROM m_user";
+
+        // ResultSetExtractorの生成
+        UserRowCallbackHandler handler = new UserRowCallbackHandler();
+
+        //SQL実行＆CSV出力
+        jdbc.query(sql, handler);
     }
+
 }
