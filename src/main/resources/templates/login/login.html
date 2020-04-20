@@ -9,22 +9,28 @@
     cssファイル　th:href="@{resorse/対象ファイルパス}"
     jsファイル　th:src="@{resorse/対象ファイルパス}"
     -->
-    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
     <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
     <title>Login</title>
 </head>
 <body class="text-center">
     <h1>Login</h1>
     <form method="post" action="/login">
+        <!-- エラーメッセージ -->
+        <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+           th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+           class="text-danger">
+            ログインエラーメッセージ
+        </p>
         <!-- ユーザーID -->
         <label>ユーザーID</label>
-        <input type="text" /><br/>
+        <input type="text" name="userId" /><br/>
         <br />
         <!-- パスワード -->
         <label>パスワード</label>
-        <input type="password" /><br/>
+        <input type="password" name="password" /><br/>
         <br />
         <!-- ログインボタン -->
         <button class="btn btn-primary" type="submit">ログイン</button>

@@ -17,9 +17,9 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
     // 複数ある場合はどのクラスを使用するか指定しないと、エラーになる
-    @Qualifier("UserDaoJdbcImpl2")
+    @Autowired
+    @Qualifier("UserDaoJdbcImpl")
     UserDao dao;
 
     /**
