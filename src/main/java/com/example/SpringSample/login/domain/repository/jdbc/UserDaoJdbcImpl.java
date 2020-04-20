@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+//【8-5-1】pring @Transactionalに引数を付けるとログレベルを変更可能
+@Transactional
 @Repository("UserDaoJdbcImpl")
 public class UserDaoJdbcImpl implements UserDao {
 
@@ -127,10 +130,9 @@ public class UserDaoJdbcImpl implements UserDao {
                 user.getUserId());
 
         //トランザクション確認のため、わざと例外をthrowする
-        //        if (rowNumber > 0) {
-        //            throw new DataAccessException("トランザクションテスト") {
-        //            };
-        //        }
+                if (rowNumber > 0) {
+                    throw new DataAccessException("トランザクションテスト") {};
+                }
 
         return rowNumber;
     }
