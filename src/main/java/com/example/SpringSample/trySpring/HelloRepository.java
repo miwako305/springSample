@@ -1,10 +1,10 @@
 package com.example.SpringSample.trySpring;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.Map;
 
 /*
 * レポジトリークラス
