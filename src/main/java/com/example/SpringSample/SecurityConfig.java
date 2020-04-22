@@ -91,8 +91,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login"); //ログアウト成功後のURL
 
         //【11-2-3】RESTはCSRF対策を無効にする。
-        RestMatcher csrfMatcher =new RestMatcher("/rest/**"
-        );
+        RestMatcher csrfMatcher =new RestMatcher("/rest/**");
         //CSRF対策
         http.csrf().requireCsrfProtectionMatcher(csrfMatcher);
     }

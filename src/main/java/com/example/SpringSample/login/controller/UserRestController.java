@@ -3,7 +3,13 @@ package com.example.SpringSample.login.controller;
 import com.example.SpringSample.login.domain.model.User;
 import com.example.SpringSample.login.domain.service.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,6 +25,7 @@ REST用のコントローラーには@RestControllerをつけます。
 public class UserRestController {
 
     @Autowired
+    @Qualifier("RestServiceMybatisImpl") // jdbc と二つに増えたから必要
     RestService service;
 
     @GetMapping("/rest/get")
