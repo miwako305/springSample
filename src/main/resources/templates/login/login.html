@@ -26,11 +26,13 @@
         </p>
         <!-- ユーザーID -->
         <label>ユーザーID</label>
-        <input type="text" name="userId" /><br/>
+        <input type="text" name="userId" />
+        <br/>
         <br />
         <!-- パスワード -->
         <label>パスワード</label>
         <input type="password" name="password" /><br/>
+        <input type="hidden" name="_csrf" th:name="${_csrf.ParameterName}" th:value="${_csrf.token}"/>
         <br />
         <!-- ログインボタン -->
         <button class="btn btn-primary" type="submit">ログイン</button>

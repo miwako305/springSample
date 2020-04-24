@@ -4,12 +4,8 @@ import com.example.SpringSample.login.domain.model.User;
 import com.example.SpringSample.login.domain.service.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -53,6 +49,25 @@ public class UserRestController {
         return str;
     }
 
+    @PostMapping("/rest/insert")
+    public String postSignUp(@RequestBody User user, BindingResult bindingResult) {
+        // 入力チェックに引っかかった場合、ユーザー登録画面に戻る。
+        if(bindingResult.hasErrors()){
+            //Getリクエスト用のメソッドを呼び出してユーザー登録用画面に戻ります
+            return "{\"result\":\"NG\"}";
+        }
+
+        // formの中身をコンソールに出して確認します。
+        System.out.println(user);
+        boolean result = service.insert(user);
+        String str = "";
+        if (result == true) {
+            str = "{\"result\":\"ok\"}";
+        } else {
+            str = "{\"result\":\"NG\"}";
+        }
+        return str;
+    }
 
     @DeleteMapping("/rest/delete/{id:.+}")
     public String deleteUserOne(@PathVariable("id") String userId){
