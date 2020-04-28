@@ -74,7 +74,6 @@
         FROM
             m_user
     </select>
-
     <!-- １件更新 -->
     <update id="updateOne" parameterType="com.example.SpringSample.login.domain.model.User">
         UPDATE m_user

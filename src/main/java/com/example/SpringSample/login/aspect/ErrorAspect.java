@@ -1,4 +1,4 @@
-package com.example.demo.login.aspect;
+package com.example.SpringSample.login.aspect;
 
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;

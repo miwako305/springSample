@@ -1,9 +1,8 @@
 package com.example.SpringSample.login.domain.service;
 
-import java.util.List;
-
 import com.example.SpringSample.login.domain.model.User;
 
+import java.util.List;
 public interface RestService {
 
     //１件登録用メソッド

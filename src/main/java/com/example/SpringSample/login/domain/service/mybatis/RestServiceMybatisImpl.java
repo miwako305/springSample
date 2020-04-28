@@ -3,6 +3,7 @@ package com.example.SpringSample.login.domain.service.mybatis;
 import com.example.SpringSample.login.domain.model.User;
 import com.example.SpringSample.login.domain.repository.mybatis.UserMapper2;
 import com.example.SpringSample.login.domain.service.RestService;
+import com.example.SpringSample.recipelist.domain.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,11 @@ public class RestServiceMybatisImpl implements RestService {
     public List<User> selectMany() {
         //select実行
         return userMapper.selectMany();
+    }
+
+    public List<Recipe> selectALL() {
+        //select実行
+        return userMapper.selectALL();
     }
 
     @Override

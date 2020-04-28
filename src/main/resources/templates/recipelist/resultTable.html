@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"></meta>
+</head>
+<body>
+<!-- コンテンツ部分 -->
+<div th:fragment="resultTable_contents">
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th class="info col-sm-1">料理ID</th>
+            <th class="info col-sm-2">料理名</th>
+            <th class="info col-sm-2">備考</th>
+            <th class="info col-sm-2">登録日</th>
+        </tr>
+        <tr th:each="rcp : ${recipes}">
+            <td th:text="${rcp.menu_id}"></td>
+            <td th:text="${rcp.menu_name}"></td>
+            <td th:text="${rcp.menu_memo}"></td>
+            <td th:text="${#dates.format(rcp.update_time, 'YYYY/MM/dd')}"></td>
+        </tr>
+    </table>
+    <!-- ユーザー一覧の件数 -->
+    <!--<label th:text=" '合計：' + ${userListCount} + '件' "></label><br/>-->
+</div>
+</body>
+</html>

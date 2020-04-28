@@ -1,10 +1,9 @@
 package com.example.SpringSample.login.domain.repository;
 
-import java.util.List;
-
+import com.example.SpringSample.login.domain.model.User;
 import org.springframework.dao.DataAccessException;
 
-import com.example.SpringSample.login.domain.model.User;
+import java.util.List;
 
 public interface UserDao {
 

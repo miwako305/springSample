@@ -1,6 +1,7 @@
 package com.example.SpringSample.login.domain.repository.mybatis;
 
 import com.example.SpringSample.login.domain.model.User;
+import com.example.SpringSample.recipelist.domain.model.Recipe;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -25,4 +26,6 @@ public interface UserMapper2 {
 
     // １件削除用メソッド
     public boolean deleteOne(String userId);
+
+    public List<Recipe> selectALL();
 }
