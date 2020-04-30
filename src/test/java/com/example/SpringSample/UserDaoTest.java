@@ -1,6 +1,6 @@
 package com.example.SpringSample;
 
-import com.example.SpringSample.login.domain.repository.UserDao;
+import com.example.SpringSample.recipe.repository.login.UserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

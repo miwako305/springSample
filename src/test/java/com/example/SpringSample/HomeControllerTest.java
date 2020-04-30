@@ -1,6 +1,6 @@
 package com.example.SpringSample;
 
-import com.example.SpringSample.login.domain.service.UserService;
+import com.example.SpringSample.recipe.service.login.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
