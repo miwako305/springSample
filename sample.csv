@@ -1,1 +1,8 @@
-yamada@xxx.co.jp,password,山田太郎,1990-01-01,28,false,ROLE_ADMIN
+tamura@1.co.jp,$2a$10$3TGCxjtnb6jpRW0.yRDR3efGHZvgFtbHLAwdGXLMUsbHzM.RQ4ww6,tamura,1986-11-05,31,false,ROLE_ADMIN
+tamura@2.co.jp,$2a$10$nAM00nCtyWbVZcEhL5dQruV9BSSS.qyn3rkK8kqRG2wNklHtB8PGS,tamura,1986-11-05,31,false,ROLE_ADMIN
+tamura@3.co.jp,$2a$10$/rzvZhZ3mbRMEFqRhmfF9Ow/3eONgfA/f2ygyPCE3GggMN8IhZzOW,tamura,1986-11-05,31,false,ROLE_ADMIN
+tamura@xxx.co.jp,pass,tamura,1986-11-05,31,false,ROLE_GENERAL
+tamura@xxx.jp,pass,tamura,1986-11-05,31,false,ROLE_GENERAL
+test@test.com,$2a$10$bnUE1KZGPoeexhKsLGrJAul7T7TJZuqSLB7w6ynm0KoaJgDsjgX96,テスト,1991-05-04,20,false,ROLE_GENERAL
+tt@xxx.co000.jp,$2a$10$cB1mx9SCu0stZOASbrhgL.j6NDbBS14Uw76Tm77JJSl1DI5Gxxul.,tamura,1986-11-05,31,false,ROLE_ADMIN
+yamada@xxx.co.jp,$2a$10$J6lpE072ZLvBrCA/iyqLNO7ZpiB7TM9VAurmclTSh3CffCHx9At32,yamada,1990-01-01,28,false,ROLE_ADMIN

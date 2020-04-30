@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrapの設定 -->
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <!-- CSSの読込 -->
+    <link th:href="@{/css/recipelist.css}" rel="stylesheet"></link>
+    <title>レシピ一覧</title>
+</head>
+<div class="page-header">
+    <h1>レシピ一覧</h1>
+</div>
+<div class="wrapper">
+
+    <!-- サイドバー -->
+    <div class="reft_coloum">
+        <div class="searchform">
+            <form method="post" action="/recipelist">
+                <ul class="radiolist">
+                    <dl>
+                        <dt>食材 </dt>
+                        <dd th:each="item : ${Materials}">
+                            <input type="radio" name="radioMaterials"
+                                   th:text="${item.key}"
+                            >
+                            <span class="checkbox" th:value="${item.value}"> </span>
+                        </dd>
+                    </dl>
+                </ul>
+            </form>
+            <div class="under-right">
+            <button class="btn btn-primary" type="submit" name="update">
+                検索
+            </button>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+    <!-- コンテンツ部分 -->
+    <!-- ===== コンテンツ ===== -->
+    <div class="right_coloum">
+        <div class="row">
+            <div class="main">
+                <!--【8-2-2】ポイント1 th:include コンテンツ部分のファイルパス（プリプロセッシング）
+                th:include=__${変数名}__
+                -->
+                <div th:include="__${contents}__"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

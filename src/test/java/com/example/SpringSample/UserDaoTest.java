@@ -1,6 +1,6 @@
 package com.example.SpringSample;
 
-import com.example.SpringSample.login.domain.repository.UserDao;
+import com.example.SpringSample.recipe.repository.login.UserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +10,15 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /*
  【12-3-1】
  @RunWith: テストをどのクラスで実行するかを指定する
  @SpringBootTest : Springbootを起動させてから動く
  stati org.junit　のstaticはコードの記述量を減らす・可読性の為に実装されています。
 */
-import static org.junit.Assert. *;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
